@@ -5,16 +5,18 @@ namespace AutoShopFin.Data
 {
     public class AutoShopFinContext : DbContext
     {
-        public AutoShopFinContext(DbContextOptions<AutoShopFinContext> options)
-            : base(options)
-        {
-        }
-
         public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Vehiculos> Vehiculos { get; set; }
         public DbSet<Reparaciones> Reparaciones { get; set; }
         public DbSet<Partes> Partes { get; set; }
         public DbSet<Citas> Citas { get; set; }
+
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(
+                "Server=(localdb)\\MSSQLLocalDB;Database=AutoShopFin;Trusted_Connection=True;");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
