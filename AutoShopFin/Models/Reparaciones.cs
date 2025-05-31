@@ -1,12 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AutoShopFin.Models
 {
-    class Reparaciones
+    public class Reparaciones
     {
+        [Key]
+        public int IdReparacion { get; set; }
+
+        public string Descripcion { get; set; }
+
+        [ForeignKey("Vehiculos")]
+        public int IdVehiculo { get; set; }
+        public Vehiculos Vehiculo { get; set; }
+
+        public DateTime FechaInicio { get; set; }
+
+        public DateTime FechaFin { get; set; }
+
+        [Column(TypeName = "decimal(10,2)")]
+        public decimal CostoEstimado { get; set; }
     }
 }
